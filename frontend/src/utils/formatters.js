@@ -45,46 +45,51 @@ export const formatDate = (dateStr) => {
 };
 
 /**
- * Map risk level to semantic colors
+ * Map risk level to light-theme semantic colors
+ * Low: #159B70, Moderate: #E9A23B, High: #F97316, Critical: #E05252
  */
 export const getRiskColor = (level) => {
   const norm = (level || '').toUpperCase();
   switch (norm) {
     case 'LOW':
       return {
-        bg: 'bg-emerald-500/10',
-        text: 'text-emerald-400',
-        border: 'border-emerald-500/30',
-        badge: 'bg-emerald-500 text-slate-950',
+        bg: 'bg-[#159B70]/10',
+        text: 'text-[#159B70]',
+        border: 'border-[#159B70]/25',
+        badge: 'bg-[#159B70] text-white',
+        dot: 'bg-[#159B70]',
       };
     case 'MODERATE':
       return {
-        bg: 'bg-amber-500/10',
-        text: 'text-amber-400',
-        border: 'border-amber-500/30',
-        badge: 'bg-amber-500 text-slate-950',
+        bg: 'bg-[#E9A23B]/10',
+        text: 'text-[#B47414]',
+        border: 'border-[#E9A23B]/30',
+        badge: 'bg-[#E9A23B] text-white',
+        dot: 'bg-[#E9A23B]',
       };
     case 'HIGH':
       return {
-        bg: 'bg-orange-500/10',
-        text: 'text-orange-400',
-        border: 'border-orange-500/30',
-        badge: 'bg-orange-500 text-white',
+        bg: 'bg-[#F97316]/10',
+        text: 'text-[#EA580C]',
+        border: 'border-[#F97316]/30',
+        badge: 'bg-[#F97316] text-white',
+        dot: 'bg-[#F97316]',
       };
     case 'CRITICAL':
       return {
-        bg: 'bg-rose-500/10',
-        text: 'text-rose-400',
-        border: 'border-rose-500/30',
-        badge: 'bg-rose-600 text-white',
+        bg: 'bg-[#E05252]/10',
+        text: 'text-[#E05252]',
+        border: 'border-[#E05252]/30',
+        badge: 'bg-[#E05252] text-white',
+        dot: 'bg-[#E05252]',
       };
     default:
       return {
-        bg: 'bg-slate-500/10',
-        text: 'text-slate-400',
-        border: 'border-slate-500/30',
-        badge: 'bg-slate-700 text-slate-200',
+        bg: 'bg-[#F1F4F9]',
+        text: 'text-[#68758A]',
+        border: 'border-[#E6EAF0]',
+        badge: 'bg-[#E6EAF0] text-[#172033]',
+        dot: 'bg-[#68758A]',
       };
   }
 };
-

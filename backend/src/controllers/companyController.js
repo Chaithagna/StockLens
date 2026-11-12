@@ -6,10 +6,17 @@ const KNOWN_ENTITIES = [
   { name: 'Apple Inc.', ticker: 'AAPL', sector: 'Consumer Electronics & Software', country: 'United States', domain: 'apple.com' },
   { name: 'Microsoft Corporation', ticker: 'MSFT', sector: 'Cloud Computing & Enterprise Software', country: 'United States', domain: 'microsoft.com' },
   { name: 'Tesla, Inc.', ticker: 'TSLA', sector: 'Electric Vehicles & Clean Energy', country: 'United States', domain: 'tesla.com' },
-  { name: 'Alphabet Inc.', ticker: 'GOOGL', sector: 'Internet Services & AI', country: 'United States', domain: 'abc.xyz' },
+  { name: 'The Boeing Company', ticker: 'BA', sector: 'Aerospace & Defense', country: 'United States', domain: 'boeing.com' },
+  { name: 'Intel Corporation', ticker: 'INTC', sector: 'Semiconductors & Processors', country: 'United States', domain: 'intel.com' },
+  { name: 'AMC Entertainment Holdings', ticker: 'AMC', sector: 'Entertainment & Theatrical Exhibition', country: 'United States', domain: 'amctheatres.com' },
+  { name: 'Uber Technologies, Inc.', ticker: 'UBER', sector: 'Mobility & Delivery Platform', country: 'United States', domain: 'uber.com' },
+  { name: 'Coinbase Global, Inc.', ticker: 'COIN', sector: 'Digital Assets & FinTech Infrastructure', country: 'United States', domain: 'coinbase.com' },
+  { name: 'WeWork Inc.', ticker: 'WE', sector: 'Flexible Workspace & Real Estate', country: 'United States', domain: 'wework.com' },
   { name: 'Amazon.com, Inc.', ticker: 'AMZN', sector: 'E-Commerce & Cloud Infrastructure', country: 'United States', domain: 'amazon.com' },
+  { name: 'Alphabet Inc.', ticker: 'GOOGL', sector: 'Internet Services & AI', country: 'United States', domain: 'abc.xyz' },
   { name: 'NVIDIA Corporation', ticker: 'NVDA', sector: 'Semiconductors & Accelerated Computing', country: 'United States', domain: 'nvidia.com' },
   { name: 'Meta Platforms, Inc.', ticker: 'META', sector: 'Digital Media & Social Technology', country: 'United States', domain: 'meta.com' },
+  { name: 'Rivian Automotive, Inc.', ticker: 'RIVN', sector: 'Electric Vehicles & Mobility Tech', country: 'United States', domain: 'rivian.com' },
   { name: 'Shell Capital Holdings Ltd (Virtual Office Test Case)', ticker: 'SHEL-SHELL', sector: 'Offshore Holding / Test Shell Entity', country: 'United States (Delaware)', domain: 'shell-holdings-virtual.wixsite.com' },
 ];
 

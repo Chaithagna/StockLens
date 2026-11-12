@@ -8,10 +8,6 @@ import {
   CheckCircle2,
   AlertCircle,
   Loader2,
-  Shield,
-  MapPin,
-  TrendingUp,
-  Brain,
 } from 'lucide-react';
 
 export const ProfileSettingsPage = () => {
@@ -59,9 +55,9 @@ export const ProfileSettingsPage = () => {
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
       {/* Header */}
-      <div className="pb-6 border-b border-slate-800">
-        <h1 className="text-2xl font-bold text-white tracking-tight">Account Profile & Settings</h1>
-        <p className="text-xs text-slate-400 mt-1">
+      <div className="pb-6 border-b border-[#E6EAF0]">
+        <h1 className="text-2xl font-bold text-[#172033] tracking-tight">Account Profile & Settings</h1>
+        <p className="text-xs text-[#68758A] mt-1">
           Manage your investor credentials, analysis risk tolerance, and external API integration keys.
         </p>
       </div>
@@ -70,8 +66,8 @@ export const ProfileSettingsPage = () => {
         <div
           className={`p-4 rounded-xl text-xs flex items-center gap-2 border ${
             feedback.type === 'success'
-              ? 'bg-emerald-950/20 border-emerald-500/30 text-emerald-400'
-              : 'bg-rose-950/20 border-rose-500/30 text-rose-400'
+              ? 'bg-[#159B70]/10 border-[#159B70]/30 text-[#159B70] font-semibold'
+              : 'bg-[#E05252]/10 border-[#E05252]/30 text-[#E05252] font-semibold'
           }`}
         >
           {feedback.type === 'success' ? (
@@ -85,15 +81,15 @@ export const ProfileSettingsPage = () => {
 
       <form onSubmit={handleSave} className="space-y-8">
         {/* Personal Details */}
-        <div className="panel-card p-6 border-slate-800 space-y-4">
-          <h3 className="text-sm font-semibold text-white uppercase tracking-wider font-mono flex items-center gap-2">
-            <User className="w-4 h-4 text-brand-400" />
+        <div className="panel-card p-6 space-y-4">
+          <h3 className="text-xs font-bold text-[#68758A] uppercase tracking-wider font-mono flex items-center gap-2">
+            <User className="w-4 h-4 text-[#315CF5]" />
             <span>Personal & Account Details</span>
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+              <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
                 Full Name
               </label>
               <input
@@ -105,29 +101,29 @@ export const ProfileSettingsPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+              <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
                 Email Address (Read-only)
               </label>
               <input
                 type="email"
                 disabled
                 value={user?.email || ''}
-                className="w-full glass-input opacity-60 cursor-not-allowed"
+                className="w-full glass-input opacity-70 cursor-not-allowed bg-[#F7F9FC]"
               />
             </div>
           </div>
         </div>
 
         {/* Investment & Risk Tolerance Preferences */}
-        <div className="panel-card p-6 border-slate-800 space-y-4">
-          <h3 className="text-sm font-semibold text-white uppercase tracking-wider font-mono flex items-center gap-2">
-            <Sliders className="w-4 h-4 text-emerald-400" />
+        <div className="panel-card p-6 space-y-4">
+          <h3 className="text-xs font-bold text-[#68758A] uppercase tracking-wider font-mono flex items-center gap-2">
+            <Sliders className="w-4 h-4 text-[#16A6A0]" />
             <span>Due Diligence Preferences</span>
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+              <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
                 Risk Tolerance Classification
               </label>
               <select
@@ -147,9 +143,9 @@ export const ProfileSettingsPage = () => {
                 id="notifications"
                 checked={notificationsEnabled}
                 onChange={(e) => setNotificationsEnabled(e.target.checked)}
-                className="rounded border-slate-700 text-brand-600 focus:ring-0 cursor-pointer w-4 h-4"
+                className="rounded border-[#E6EAF0] text-[#315CF5] focus:ring-0 cursor-pointer w-4 h-4"
               />
-              <label htmlFor="notifications" className="text-xs text-slate-300 cursor-pointer">
+              <label htmlFor="notifications" className="text-xs text-[#172033] font-medium cursor-pointer">
                 Enable automated audit notifications and stage alerts
               </label>
             </div>
@@ -157,14 +153,14 @@ export const ProfileSettingsPage = () => {
         </div>
 
         {/* Custom API Integrations */}
-        <div className="panel-card p-6 border-slate-800 space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="panel-card p-6 space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#E6EAF0]">
             <div>
-              <h3 className="text-sm font-semibold text-white uppercase tracking-wider font-mono flex items-center gap-2">
-                <Key className="w-4 h-4 text-amber-400" />
+              <h3 className="text-xs font-bold text-[#68758A] uppercase tracking-wider font-mono flex items-center gap-2">
+                <Key className="w-4 h-4 text-[#E9A23B]" />
                 <span>Custom API Key Integrations</span>
               </h3>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-[#68758A] mt-1">
                 Optional: Supply your personal keys to override server defaults. If left empty, pre-calibrated server heuristics remain active.
               </p>
             </div>
@@ -172,7 +168,7 @@ export const ProfileSettingsPage = () => {
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+              <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
                 Google Maps Platform API Key (Places & Street View)
               </label>
               <input
@@ -185,7 +181,7 @@ export const ProfileSettingsPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+              <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
                 Finnhub Financial Market API Key
               </label>
               <input
@@ -198,7 +194,7 @@ export const ProfileSettingsPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+              <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
                 Tavily Search API Key (Deep News & Legal Scans)
               </label>
               <input
@@ -212,7 +208,7 @@ export const ProfileSettingsPage = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+                <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
                   Google Gemini AI API Key
                 </label>
                 <input
@@ -225,7 +221,7 @@ export const ProfileSettingsPage = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+                <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
                   OpenAI API Key
                 </label>
                 <input
@@ -245,7 +241,7 @@ export const ProfileSettingsPage = () => {
           <button
             type="submit"
             disabled={saving}
-            className="bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow-lg shadow-brand-500/20 transition-all flex items-center gap-2 disabled:opacity-50"
+            className="btn-primary"
           >
             {saving ? (
               <>
@@ -264,4 +260,3 @@ export const ProfileSettingsPage = () => {
     </div>
   );
 };
-

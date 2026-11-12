@@ -5,14 +5,8 @@ import { useResearch } from '../context/ResearchContext.jsx';
 import { formatCurrency, formatPercent } from '../utils/formatters.js';
 import {
   TrendingUp,
-  DollarSign,
   BarChart2,
-  PieChart,
-  ShieldCheck,
-  AlertCircle,
   Loader2,
-  ArrowUpRight,
-  ArrowDownRight,
 } from 'lucide-react';
 import {
   BarChart,
@@ -49,8 +43,8 @@ export const FinancialAnalysisPage = () => {
   if (loading) {
     return (
       <div className="py-24 text-center">
-        <Loader2 className="w-8 h-8 animate-spin text-brand-500 mx-auto" />
-        <p className="text-xs text-slate-400 font-mono mt-3">Loading audited financial statements...</p>
+        <Loader2 className="w-8 h-8 animate-spin text-[#315CF5] mx-auto" />
+        <p className="text-xs text-[#68758A] font-mono mt-3">Loading audited financial statements...</p>
       </div>
     );
   }
@@ -58,12 +52,12 @@ export const FinancialAnalysisPage = () => {
   if (!report) {
     return (
       <div className="panel-card p-8 text-center max-w-md mx-auto space-y-4">
-        <TrendingUp className="w-10 h-10 text-brand-400 mx-auto" />
-        <h3 className="text-base font-bold text-white">No Active Company Selected</h3>
-        <p className="text-xs text-slate-400">
+        <TrendingUp className="w-10 h-10 text-[#315CF5] mx-auto" />
+        <h3 className="text-base font-bold text-[#172033]">No Active Company Selected</h3>
+        <p className="text-xs text-[#68758A]">
           Choose a research report from your dashboard to view financial diagnostics.
         </p>
-        <Link to="/dashboard" className="inline-block bg-brand-600 text-white text-xs px-4 py-2 rounded-lg">
+        <Link to="/dashboard" className="btn-primary text-xs">
           Go to Dashboard
         </Link>
       </div>
@@ -75,95 +69,100 @@ export const FinancialAnalysisPage = () => {
 
   const chartData = history.map((item) => ({
     year: item.year,
-    Revenue: item.revenue / 1e9,
-    'Net Income': item.netIncome / 1e9,
-    'Operating Cash Flow': (item.operatingCashFlow || 0) / 1e9,
+    Revenue: Number(((item.revenue || 0) / 1e9).toFixed(2)),
+    'Net Income': Number(((item.netIncome || 0) / 1e9).toFixed(2)),
+    'Operating Cash Flow': Number((((item.operatingCashFlow || 0)) / 1e9).toFixed(2)),
   }));
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[#E6EAF0] gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl font-bold text-[#172033] tracking-tight">
               Financial Performance & Solvency Health
             </h1>
-            <span className="text-xs font-mono bg-brand-500/10 text-brand-400 px-2.5 py-0.5 rounded border border-brand-500/20">
+            <span className="text-xs font-mono font-bold bg-[#315CF5]/10 text-[#315CF5] px-2.5 py-0.5 rounded border border-[#315CF5]/20">
               AUDITED FINANCIALS
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#68758A] mt-1">
             Historical revenues, earnings stability, balance sheet leverage, and liquidity buffers for{' '}
-            <span className="text-white font-semibold">{report.companyName}</span>.
+            <span className="text-[#172033] font-semibold">{report.companyName}</span>.
           </p>
         </div>
 
         <div className="text-right">
-          <span className="text-xs font-mono uppercase text-slate-400">Solvency Status</span>
-          <div className="text-2xl font-extrabold text-emerald-400 font-mono">{f.solvencyRating || 'SOUND'}</div>
+          <span className="text-[11px] font-mono uppercase font-bold text-[#68758A]">Solvency Status</span>
+          <div className="text-2xl font-extrabold text-[#159B70] font-mono">{f.solvencyRating || 'SOUND'}</div>
         </div>
       </div>
 
       {/* Ratios & Key Highlights Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-        <div className="panel-card p-4 border-slate-800">
-          <span className="text-[10px] font-mono uppercase text-slate-400 block">Market Cap</span>
-          <span className="text-lg font-bold text-white font-mono mt-1 block">{formatCurrency(f.marketCap)}</span>
+        <div className="panel-card p-4">
+          <span className="text-[10px] font-mono uppercase font-bold text-[#68758A] block">Market Cap</span>
+          <span className="text-lg font-bold text-[#172033] font-mono mt-1 block">{formatCurrency(f.marketCap)}</span>
         </div>
-        <div className="panel-card p-4 border-slate-800">
-          <span className="text-[10px] font-mono uppercase text-slate-400 block">Annual Revenue</span>
-          <span className="text-lg font-bold text-white font-mono mt-1 block">{formatCurrency(f.revenue)}</span>
+        <div className="panel-card p-4">
+          <span className="text-[10px] font-mono uppercase font-bold text-[#68758A] block">Annual Revenue</span>
+          <span className="text-lg font-bold text-[#172033] font-mono mt-1 block">{formatCurrency(f.revenue)}</span>
         </div>
-        <div className="panel-card p-4 border-slate-800">
-          <span className="text-[10px] font-mono uppercase text-slate-400 block">Net Income</span>
-          <span className="text-lg font-bold text-white font-mono mt-1 block">{formatCurrency(f.netIncome)}</span>
+        <div className="panel-card p-4">
+          <span className="text-[10px] font-mono uppercase font-bold text-[#68758A] block">Net Income</span>
+          <span className="text-lg font-bold text-[#159B70] font-mono mt-1 block">{formatCurrency(f.netIncome)}</span>
         </div>
-        <div className="panel-card p-4 border-slate-800">
-          <span className="text-[10px] font-mono uppercase text-slate-400 block">Profit Margin</span>
-          <span className="text-lg font-bold text-emerald-400 font-mono mt-1 block">{formatPercent(f.profitMargin)}</span>
+        <div className="panel-card p-4">
+          <span className="text-[10px] font-mono uppercase font-bold text-[#68758A] block">Profit Margin</span>
+          <span className="text-lg font-bold text-[#159B70] font-mono mt-1 block">{formatPercent(f.profitMargin)}</span>
         </div>
-        <div className="panel-card p-4 border-slate-800">
-          <span className="text-[10px] font-mono uppercase text-slate-400 block">Debt-to-Equity</span>
-          <span className="text-lg font-bold text-white font-mono mt-1 block">{f.debtToEquity || 'N/A'}</span>
+        <div className="panel-card p-4">
+          <span className="text-[10px] font-mono uppercase font-bold text-[#68758A] block">Debt-to-Equity</span>
+          <span className="text-lg font-bold text-[#172033] font-mono mt-1 block">{f.debtToEquity || 'N/A'}</span>
         </div>
-        <div className="panel-card p-4 border-slate-800">
-          <span className="text-[10px] font-mono uppercase text-slate-400 block">Current Ratio</span>
-          <span className="text-lg font-bold text-white font-mono mt-1 block">{f.currentRatio || 'N/A'}</span>
+        <div className="panel-card p-4">
+          <span className="text-[10px] font-mono uppercase font-bold text-[#68758A] block">Current Ratio</span>
+          <span className="text-lg font-bold text-[#172033] font-mono mt-1 block">{f.currentRatio || 'N/A'}</span>
         </div>
       </div>
 
       {/* Annual Revenue & Earnings Trajectory Chart */}
-      <div className="panel-card p-6 border-slate-800">
+      <div className="panel-card p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider font-mono">
+            <h3 className="text-xs font-bold text-[#68758A] uppercase tracking-wider font-mono">
               Multi-Year Revenue & Net Income Trajectory
             </h3>
-            <p className="text-xs text-slate-400 mt-0.5">Reported annual earnings in Billions (USD)</p>
+            <p className="text-xs text-[#68758A] mt-0.5">Reported annual earnings in Billions (USD)</p>
           </div>
-          <BarChart2 className="w-5 h-5 text-slate-500" />
+          <BarChart2 className="w-5 h-5 text-[#68758A]" />
         </div>
 
         <div className="h-72 w-full">
           {chartData.length > 0 ? (
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                <XAxis dataKey="year" stroke="#64748b" fontSize={12} fontMono />
-                <YAxis stroke="#64748b" fontSize={12} fontMono />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E6EAF0" vertical={false} />
+                <XAxis dataKey="year" stroke="#9AA5B6" fontSize={12} />
+                <YAxis stroke="#9AA5B6" fontSize={12} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
-                  itemStyle={{ fontSize: '12px' }}
+                  contentStyle={{
+                    backgroundColor: '#FFFFFF',
+                    borderColor: '#E6EAF0',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 12px rgba(16, 24, 40, 0.08)',
+                  }}
+                  itemStyle={{ fontSize: '12px', fontWeight: 600, color: '#172033' }}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                <Bar dataKey="Revenue" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Net Income" fill="#10b981" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Operating Cash Flow" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Revenue" fill="#315CF5" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Net Income" fill="#159B70" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Operating Cash Flow" fill="#16A6A0" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           ) : (
-            <div className="h-full flex items-center justify-center text-xs text-slate-500">
+            <div className="h-full flex items-center justify-center text-xs text-[#68758A]">
               No historical trajectory records available.
             </div>
           )}
@@ -171,14 +170,14 @@ export const FinancialAnalysisPage = () => {
       </div>
 
       {/* Historical Annual Table */}
-      <div className="panel-card p-6 border-slate-800">
-        <h3 className="text-sm font-semibold text-white uppercase tracking-wider font-mono mb-4">
+      <div className="panel-card p-6">
+        <h3 className="text-xs font-bold text-[#68758A] uppercase tracking-wider font-mono mb-4">
           Financial Statement Breakdown By Fiscal Year
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 uppercase text-[11px]">
+              <tr className="border-b border-[#E6EAF0] text-[#68758A] uppercase text-[11px]">
                 <th className="pb-3">Fiscal Year</th>
                 <th className="pb-3">Revenue</th>
                 <th className="pb-3">Net Income</th>
@@ -186,14 +185,14 @@ export const FinancialAnalysisPage = () => {
                 <th className="pb-3">Free Cash Flow</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-[#F1F4F9]">
               {history.map((row) => (
-                <tr key={row.year} className="hover:bg-slate-800/30">
-                  <td className="py-3 font-bold text-white">{row.year}</td>
-                  <td className="py-3 text-slate-200">{formatCurrency(row.revenue)}</td>
-                  <td className="py-3 text-emerald-400 font-semibold">{formatCurrency(row.netIncome)}</td>
-                  <td className="py-3 text-slate-300">{formatCurrency(row.operatingCashFlow)}</td>
-                  <td className="py-3 text-slate-300">{formatCurrency(row.freeCashFlow)}</td>
+                <tr key={row.year} className="hover:bg-[#F7F9FC]">
+                  <td className="py-3 font-bold text-[#172033]">{row.year}</td>
+                  <td className="py-3 text-[#172033]">{formatCurrency(row.revenue)}</td>
+                  <td className="py-3 text-[#159B70] font-bold">{formatCurrency(row.netIncome)}</td>
+                  <td className="py-3 text-[#68758A]">{formatCurrency(row.operatingCashFlow)}</td>
+                  <td className="py-3 text-[#68758A]">{formatCurrency(row.freeCashFlow)}</td>
                 </tr>
               ))}
             </tbody>
@@ -203,4 +202,3 @@ export const FinancialAnalysisPage = () => {
     </div>
   );
 };
-

@@ -11,7 +11,6 @@ import {
   ArrowRight,
   Loader2,
   AlertCircle,
-  HelpCircle,
   ShieldAlert,
 } from 'lucide-react';
 
@@ -81,30 +80,30 @@ export const CompanySearchPage = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-bold text-[#172033] tracking-tight">
           Company Due Diligence Investigation
         </h1>
-        <p className="text-xs sm:text-sm text-slate-400 mt-1">
+        <p className="text-xs sm:text-sm text-[#68758A] mt-1">
           Search legal entities, disambiguate corporate subsidiaries, and launch multi-vector verification.
         </p>
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-xs text-rose-400 flex items-center gap-2">
+        <div className="p-4 bg-[#E05252]/10 border border-[#E05252]/20 rounded-xl text-xs text-[#E05252] flex items-center gap-2">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
       {/* Main Search & Initiation Card */}
-      <div className="panel-card p-6 sm:p-8 border-slate-800">
+      <div className="panel-card p-6 sm:p-8">
         <form onSubmit={handleInitiate} className="space-y-6">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-2">
-              Company Name or Entity Legal Name *
+            <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-2">
+              Company Name or Legal Entity Name *
             </label>
             <div className="relative">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9AA5B6]" />
               <input
                 type="text"
                 required
@@ -121,11 +120,11 @@ export const CompanySearchPage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-2">
+              <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-2">
                 Stock Ticker Symbol (Optional)
               </label>
               <div className="relative">
-                <Tag className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+                <Tag className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9AA5B6]" />
                 <input
                   type="text"
                   value={ticker}
@@ -137,11 +136,11 @@ export const CompanySearchPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono mb-2">
+              <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-2">
                 Official Web Domain (Optional)
               </label>
               <div className="relative">
-                <Globe className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+                <Globe className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9AA5B6]" />
                 <input
                   type="text"
                   value={domain}
@@ -156,7 +155,7 @@ export const CompanySearchPage = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm rounded-xl shadow-lg shadow-brand-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full py-3 btn-primary text-sm font-semibold !rounded-xl"
           >
             {submitting ? (
               <>
@@ -175,9 +174,9 @@ export const CompanySearchPage = () => {
 
       {/* Suggested Entities / Search Matches */}
       <div>
-        <h3 className="text-sm font-semibold text-white uppercase tracking-wider font-mono mb-3 flex items-center justify-between">
+        <h3 className="text-xs font-bold text-[#68758A] uppercase tracking-wider font-mono mb-3 flex items-center justify-between">
           <span>Entity Suggestions & Test Cases</span>
-          {loadingSuggestions && <Loader2 className="w-3.5 h-3.5 animate-spin text-slate-400" />}
+          {loadingSuggestions && <Loader2 className="w-3.5 h-3.5 animate-spin text-[#68758A]" />}
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -187,32 +186,31 @@ export const CompanySearchPage = () => {
               <div
                 key={idx}
                 onClick={() => handleSelectSuggestion(item)}
-                className={`panel-card p-4 border-slate-800 hover:border-brand-500/50 cursor-pointer transition-all group ${
-                  isSuspicious ? 'bg-amber-950/20 border-amber-500/30' : ''
-                }`}
+                className={`panel-card p-4 hover:border-[#315CF5]/50 cursor-pointer transition-all group ${isSuspicious ? 'bg-[#E9A23B]/5 border-[#E9A23B]/30' : ''
+                  }`}
               >
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-sm text-white group-hover:text-brand-300 transition-colors">
+                      <span className="font-bold text-sm text-[#172033] group-hover:text-[#315CF5] transition-colors">
                         {item.name}
                       </span>
                       {item.ticker && (
-                        <span className="font-mono text-[10px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded border border-slate-700">
+                        <span className="font-mono text-[10px] bg-[#F1F4F9] text-[#68758A] px-1.5 py-0.5 rounded border border-[#E6EAF0]">
                           {item.ticker}
                         </span>
                       )}
                     </div>
-                    <span className="text-xs text-slate-400 block mt-1">{item.sector}</span>
-                    <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">{item.country}</span>
+                    <span className="text-xs text-[#68758A] block mt-1">{item.sector}</span>
+                    <span className="text-[11px] text-[#9AA5B6] font-mono mt-0.5 block">{item.country}</span>
                   </div>
 
                   {isSuspicious ? (
-                    <span className="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 flex items-center gap-1">
+                    <span className="text-[10px] font-mono text-[#B47414] bg-[#E9A23B]/10 px-2 py-0.5 rounded border border-[#E9A23B]/20 flex items-center gap-1 font-semibold">
                       <ShieldAlert className="w-3 h-3" /> Shell Test
                     </span>
                   ) : (
-                    <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-brand-400 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-[#9AA5B6] group-hover:text-[#315CF5] group-hover:translate-x-1 transition-all" />
                   )}
                 </div>
               </div>
@@ -223,4 +221,3 @@ export const CompanySearchPage = () => {
     </div>
   );
 };
-

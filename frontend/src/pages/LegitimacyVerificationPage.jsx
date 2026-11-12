@@ -7,10 +7,7 @@ import {
   ShieldCheck,
   ShieldAlert,
   AlertTriangle,
-  Building,
   CheckCircle,
-  ExternalLink,
-  Globe,
   Loader2,
   FileCheck,
 } from 'lucide-react';
@@ -39,8 +36,8 @@ export const LegitimacyVerificationPage = () => {
   if (loading) {
     return (
       <div className="py-24 text-center">
-        <Loader2 className="w-8 h-8 animate-spin text-brand-500 mx-auto" />
-        <p className="text-xs text-slate-400 font-mono mt-3">Loading physical verification records...</p>
+        <Loader2 className="w-8 h-8 animate-spin text-[#315CF5] mx-auto" />
+        <p className="text-xs text-[#68758A] font-mono mt-3">Loading physical verification records...</p>
       </div>
     );
   }
@@ -48,12 +45,12 @@ export const LegitimacyVerificationPage = () => {
   if (!report) {
     return (
       <div className="panel-card p-8 text-center max-w-md mx-auto space-y-4">
-        <ShieldAlert className="w-10 h-10 text-amber-400 mx-auto" />
-        <h3 className="text-base font-bold text-white">No Active Research Selected</h3>
-        <p className="text-xs text-slate-400">
+        <ShieldAlert className="w-10 h-10 text-[#E9A23B] mx-auto" />
+        <h3 className="text-base font-bold text-[#172033]">No Active Research Selected</h3>
+        <p className="text-xs text-[#68758A]">
           Select or initiate a company due diligence audit to inspect its physical location records.
         </p>
-        <Link to="/search" className="inline-block bg-brand-600 text-white text-xs px-4 py-2 rounded-lg">
+        <Link to="/search" className="btn-primary text-xs">
           Search Companies
         </Link>
       </div>
@@ -61,40 +58,39 @@ export const LegitimacyVerificationPage = () => {
   }
 
   const v = report.snapshotData?.verification || {};
-  const c = report.snapshotData?.company || {};
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[#E6EAF0] gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl font-bold text-[#172033] tracking-tight">
               Company Legitimacy & Physical Presence
             </h1>
-            <span className="text-xs font-mono bg-brand-500/10 text-brand-400 px-2.5 py-0.5 rounded border border-brand-500/20">
+            <span className="text-xs font-mono font-bold bg-[#315CF5]/10 text-[#315CF5] px-2.5 py-0.5 rounded border border-[#315CF5]/20">
               MODULE 1
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#68758A] mt-1">
             Cross-referencing registered addresses with Google Maps Places, satellite verification, and shell maildrop registries for{' '}
-            <span className="text-white font-semibold">{report.companyName}</span>.
+            <span className="text-[#172033] font-semibold">{report.companyName}</span>.
           </p>
         </div>
 
         <div className="text-right">
-          <span className="text-xs font-mono uppercase text-slate-400">Legitimacy Score</span>
-          <div className="text-2xl font-extrabold text-white font-mono">{report.legitimacyScore}/100</div>
+          <span className="text-[11px] font-mono uppercase font-bold text-[#68758A]">Legitimacy Score</span>
+          <div className="text-2xl font-extrabold text-[#172033] font-mono">{report.legitimacyScore}/100</div>
         </div>
       </div>
 
       {/* Virtual Office Alert Banner if Flagged */}
       {v.isVirtualOffice && (
-        <div className="p-4 bg-rose-950/40 border border-rose-500/40 rounded-xl flex items-start gap-3 text-rose-300 text-xs">
-          <ShieldAlert className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+        <div className="p-4 bg-[#E05252]/5 border border-[#E05252]/25 rounded-xl flex items-start gap-3 text-xs">
+          <ShieldAlert className="w-5 h-5 text-[#E05252] shrink-0 mt-0.5" />
           <div>
-            <span className="font-bold text-sm text-rose-200">High Risk Shell Entity Indicator Detected</span>
-            <p className="mt-1 leading-relaxed">
+            <span className="font-bold text-sm text-[#E05252]">High Risk Shell Entity Indicator Detected</span>
+            <p className="mt-1 leading-relaxed text-[#172033]">
               The registered corporate headquarters matches a known coworking maildrop facility ({v.virtualOfficeProvider || 'Shared Office Provider'}). 
               Virtual maildrops allow entities to claim commercial presence without dedicated operating staff or infrastructure.
             </p>
@@ -105,15 +101,15 @@ export const LegitimacyVerificationPage = () => {
       {/* Main Grid: Google Maps View & Verification Checklist */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Google Maps / Geospatial Panel */}
-        <div className="panel-card p-6 border-slate-800 flex flex-col justify-between">
+        <div className="panel-card p-6 flex flex-col justify-between">
           <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider font-mono mb-4 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-brand-400" />
+            <h3 className="text-xs font-bold text-[#68758A] uppercase tracking-wider font-mono mb-4 flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#315CF5]" />
               <span>Google Maps Location Footprint</span>
             </h3>
 
             {/* Embedded Google Map */}
-            <div className="w-full h-64 rounded-xl overflow-hidden border border-slate-800 bg-slate-950 relative mb-4">
+            <div className="w-full h-64 rounded-xl overflow-hidden border border-[#E6EAF0] bg-[#F7F9FC] relative mb-4">
               {v.mapEmbedUrl ? (
                 <iframe
                   title="Company Location Map"
@@ -123,29 +119,29 @@ export const LegitimacyVerificationPage = () => {
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center">
-                  <MapPin className="w-8 h-8 text-slate-600 mb-2" />
-                  <span className="text-xs text-slate-400">Geospatial coordinates mapped</span>
-                  <span className="font-mono text-xs text-brand-400 mt-1">{v.formattedAddress}</span>
+                  <MapPin className="w-8 h-8 text-[#9AA5B6] mb-2" />
+                  <span className="text-xs text-[#68758A]">Geospatial coordinates mapped</span>
+                  <span className="font-mono text-xs text-[#315CF5] mt-1 font-semibold">{v.formattedAddress}</span>
                 </div>
               )}
             </div>
 
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between py-1 border-b border-slate-800/80">
-                <span className="text-slate-400">Formatted Address</span>
-                <span className="font-semibold text-white text-right max-w-xs truncate">{v.formattedAddress}</span>
+            <div className="space-y-2.5 text-xs">
+              <div className="flex justify-between py-1.5 border-b border-[#F1F4F9]">
+                <span className="text-[#68758A]">Formatted Address</span>
+                <span className="font-semibold text-[#172033] text-right max-w-xs truncate">{v.formattedAddress}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-slate-800/80">
-                <span className="text-slate-400">Facility Classification</span>
-                <span className="font-semibold text-white">{v.locationType}</span>
+              <div className="flex justify-between py-1.5 border-b border-[#F1F4F9]">
+                <span className="text-[#68758A]">Facility Classification</span>
+                <span className="font-semibold text-[#172033]">{v.locationType}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-slate-800/80">
-                <span className="text-slate-400">Operating Status</span>
-                <span className="font-mono text-emerald-400">{v.businessStatus}</span>
+              <div className="flex justify-between py-1.5 border-b border-[#F1F4F9]">
+                <span className="text-[#68758A]">Operating Status</span>
+                <span className="font-mono font-bold text-[#159B70]">{v.businessStatus}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-slate-800/80">
-                <span className="text-slate-400">Public Reviews & Rating</span>
-                <span className="font-mono text-slate-200">
+              <div className="flex justify-between py-1.5 border-b border-[#F1F4F9]">
+                <span className="text-[#68758A]">Public Reviews & Rating</span>
+                <span className="font-mono font-medium text-[#172033]">
                   {v.googleRating ? `${v.googleRating} ★ (${v.userRatingsTotal} reviews)` : 'Commercial Hub'}
                 </span>
               </div>
@@ -153,21 +149,21 @@ export const LegitimacyVerificationPage = () => {
           </div>
 
           {v.streetViewImageUrl && (
-            <div className="mt-4 pt-4 border-t border-slate-800">
-              <span className="text-[11px] font-mono uppercase text-slate-400 block mb-2">Street View Verification Snapshot</span>
+            <div className="mt-5 pt-4 border-t border-[#E6EAF0]">
+              <span className="text-[11px] font-mono font-bold uppercase text-[#68758A] block mb-2">Street View Verification Snapshot</span>
               <img
                 src={v.streetViewImageUrl}
                 alt="Headquarters street view"
-                className="w-full h-32 object-cover rounded-lg border border-slate-800"
+                className="w-full h-32 object-cover rounded-lg border border-[#E6EAF0]"
               />
             </div>
           )}
         </div>
 
         {/* Verification Findings & Evidence Checklist */}
-        <div className="panel-card p-6 border-slate-800 space-y-6">
-          <h3 className="text-sm font-semibold text-white uppercase tracking-wider font-mono flex items-center gap-2">
-            <FileCheck className="w-4 h-4 text-emerald-400" />
+        <div className="panel-card p-6 space-y-5">
+          <h3 className="text-xs font-bold text-[#68758A] uppercase tracking-wider font-mono flex items-center gap-2">
+            <FileCheck className="w-4 h-4 text-[#159B70]" />
             <span>Due Diligence Findings & Checklist</span>
           </h3>
 
@@ -178,33 +174,33 @@ export const LegitimacyVerificationPage = () => {
                   key={idx}
                   className={`p-3.5 rounded-xl border text-xs space-y-1.5 ${
                     finding.type === 'POSITIVE'
-                      ? 'bg-emerald-950/20 border-emerald-500/30'
+                      ? 'bg-[#159B70]/5 border-[#159B70]/25'
                       : finding.type === 'WARNING'
-                      ? 'bg-amber-950/20 border-amber-500/30'
-                      : 'bg-rose-950/20 border-rose-500/30'
+                      ? 'bg-[#E9A23B]/5 border-[#E9A23B]/25'
+                      : 'bg-[#E05252]/5 border-[#E05252]/25'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-slate-100 flex items-center gap-1.5">
-                      {finding.type === 'POSITIVE' && <CheckCircle className="w-4 h-4 text-emerald-400" />}
-                      {finding.type === 'WARNING' && <AlertTriangle className="w-4 h-4 text-amber-400" />}
-                      {finding.type === 'CRITICAL' && <ShieldAlert className="w-4 h-4 text-rose-400" />}
+                    <span className="font-bold text-[#172033] flex items-center gap-1.5">
+                      {finding.type === 'POSITIVE' && <CheckCircle className="w-4 h-4 text-[#159B70]" />}
+                      {finding.type === 'WARNING' && <AlertTriangle className="w-4 h-4 text-[#E9A23B]" />}
+                      {finding.type === 'CRITICAL' && <ShieldAlert className="w-4 h-4 text-[#E05252]" />}
                       {finding.title}
                     </span>
-                    <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">
+                    <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-white border border-[#E6EAF0] text-[#68758A] font-bold">
                       {finding.type}
                     </span>
                   </div>
-                  <p className="text-slate-300 leading-relaxed">{finding.description}</p>
+                  <p className="text-[#172033] leading-relaxed">{finding.description}</p>
                   {finding.evidence && (
-                    <div className="text-[11px] font-mono text-slate-400 bg-slate-950/60 p-2 rounded border border-slate-800/80">
+                    <div className="text-[11px] font-mono text-[#68758A] bg-white p-2 rounded-lg border border-[#E6EAF0]">
                       Evidence: {finding.evidence}
                     </div>
                   )}
                 </div>
               ))
             ) : (
-              <div className="text-xs text-slate-500 py-6 text-center">
+              <div className="text-xs text-[#68758A] py-6 text-center">
                 Standard registry checks verified.
               </div>
             )}
@@ -214,4 +210,3 @@ export const LegitimacyVerificationPage = () => {
     </div>
   );
 };
-

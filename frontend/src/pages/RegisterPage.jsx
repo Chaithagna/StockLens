@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
-import { UserPlus, AlertCircle, Loader2 } from 'lucide-react';
+import { UserPlus, AlertCircle, Loader2, User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
 export const RegisterPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -18,7 +19,7 @@ export const RegisterPage = () => {
     setErrorMessage('');
 
     if (password.length < 6) {
-      setErrorMessage('Password must be at least 6 characters');
+      setErrorMessage('Password must be at least 6 characters long');
       return;
     }
 
@@ -36,14 +37,14 @@ export const RegisterPage = () => {
   return (
     <div>
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-white tracking-tight">Create Research Account</h3>
-        <p className="text-xs text-slate-400 mt-1">
+        <h3 className="text-xl font-bold text-[#172033] tracking-tight">Create Research Account</h3>
+        <p className="text-xs text-[#68758A] mt-1">
           Join StockLens for automated corporate due diligence.
         </p>
       </div>
 
       {errorMessage && (
-        <div className="mb-4 p-3 bg-rose-500/10 border border-rose-500/20 rounded-lg text-xs text-rose-400 flex items-center gap-2">
+        <div className="mb-4 p-3 bg-[#E05252]/10 border border-[#E05252]/20 rounded-lg text-xs text-[#E05252] flex items-center gap-2">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{errorMessage}</span>
         </div>
@@ -51,51 +52,67 @@ export const RegisterPage = () => {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-medium text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+          <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
             Full Name
           </label>
-          <input
-            type="text"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Jane Doe"
-            className="w-full glass-input"
-          />
+          <div className="relative">
+            <User className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#9AA5B6]" />
+            <input
+              type="text"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Jane Doe"
+              className="w-full glass-input pl-9"
+            />
+          </div>
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+          <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
             Email Address
           </label>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="investor@firm.com"
-            className="w-full glass-input"
-          />
+          <div className="relative">
+            <Mail className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#9AA5B6]" />
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="investor@firm.com"
+              className="w-full glass-input pl-9"
+            />
+          </div>
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-slate-300 uppercase tracking-wider font-mono mb-1.5">
+          <label className="block text-xs font-bold text-[#172033] uppercase tracking-wider font-mono mb-1.5">
             Password (min. 6 characters)
           </label>
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
-            className="w-full glass-input"
-          />
+          <div className="relative">
+            <Lock className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#9AA5B6]" />
+            <input
+              type={showPassword ? 'text' : 'password'}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="w-full glass-input pl-9 pr-10"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9AA5B6] hover:text-[#172033] transition-colors"
+            >
+              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full mt-2 bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold py-2.5 px-4 rounded-xl shadow-lg shadow-brand-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+          className="w-full mt-2 btn-primary !py-2.5 !text-sm"
         >
           {loading ? (
             <>
@@ -111,13 +128,12 @@ export const RegisterPage = () => {
         </button>
       </form>
 
-      <div className="mt-6 text-center text-xs text-slate-400">
+      <div className="mt-6 text-center text-xs text-[#68758A]">
         Already registered?{' '}
-        <Link to="/login" className="text-brand-400 hover:text-brand-300 font-semibold">
+        <Link to="/login" className="text-[#315CF5] hover:underline font-semibold">
           Sign in here
         </Link>
       </div>
     </div>
   );
 };
-

@@ -5,9 +5,6 @@ import { RiskBadge } from '../components/common/RiskBadge.jsx';
 import { formatCurrency, formatPercent } from '../utils/formatters.js';
 import {
   GitCompare,
-  ShieldCheck,
-  TrendingUp,
-  AlertTriangle,
   Award,
   Sparkles,
   Loader2,
@@ -75,21 +72,21 @@ export const CompanyComparisonPage = () => {
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[#E6EAF0] gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-            <GitCompare className="w-6 h-6 text-brand-400" />
+          <h1 className="text-2xl font-bold text-[#172033] tracking-tight flex items-center gap-2">
+            <GitCompare className="w-6 h-6 text-[#315CF5]" />
             <span>Side-by-Side Company Due Diligence Comparison</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#68758A] mt-1">
             Evaluate multiple entities simultaneously across physical legitimacy, balance sheet solvency, and red flag density.
           </p>
         </div>
       </div>
 
       {/* Report Selection Drawer */}
-      <div className="panel-card p-5 border-slate-800">
-        <h3 className="text-xs font-semibold uppercase tracking-wider font-mono text-slate-400 mb-3">
+      <div className="panel-card p-5">
+        <h3 className="text-xs font-bold uppercase tracking-wider font-mono text-[#68758A] mb-3">
           Select Companies to Compare (Choose 2 to 4)
         </h3>
 
@@ -103,11 +100,11 @@ export const CompanyComparisonPage = () => {
                 onClick={() => handleToggleId(r._id)}
                 className={`px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center gap-2 border ${
                   isSelected
-                    ? 'bg-brand-600 text-white border-brand-500 shadow-md shadow-brand-500/20'
-                    : 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700'
+                    ? 'bg-[#315CF5] text-white border-[#315CF5] shadow-xs'
+                    : 'bg-[#F7F9FC] text-[#172033] border-[#E6EAF0] hover:border-[#D0D7E3]'
                 }`}
               >
-                <span>{r.companyName}</span>
+                <span className="font-semibold">{r.companyName}</span>
                 {r.ticker && <span className="font-mono text-[10px] opacity-80">({r.ticker})</span>}
                 <RiskBadge level={r.overallRiskLevel} size="sm" />
               </button>
@@ -115,7 +112,7 @@ export const CompanyComparisonPage = () => {
           })}
 
           {historyReports.length === 0 && (
-            <div className="text-xs text-slate-500 py-2">
+            <div className="text-xs text-[#68758A] py-2">
               No historical reports available yet. Conduct research on companies first.
             </div>
           )}
@@ -123,7 +120,7 @@ export const CompanyComparisonPage = () => {
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-xs text-rose-400 flex items-center gap-2">
+        <div className="p-4 bg-[#E05252]/10 border border-[#E05252]/20 rounded-xl text-xs text-[#E05252] flex items-center gap-2">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
@@ -131,22 +128,22 @@ export const CompanyComparisonPage = () => {
 
       {loading && (
         <div className="py-20 text-center space-y-3">
-          <Loader2 className="w-8 h-8 animate-spin text-brand-500 mx-auto" />
-          <p className="text-xs text-slate-400 font-mono">Analyzing and cross-referencing metrics...</p>
+          <Loader2 className="w-8 h-8 animate-spin text-[#315CF5] mx-auto" />
+          <p className="text-xs text-[#68758A] font-mono">Analyzing and cross-referencing metrics...</p>
         </div>
       )}
 
       {/* Comparative AI Verdict Banner */}
       {comparisonData?.verdict && !loading && (
-        <div className="p-6 bg-gradient-to-r from-brand-950/50 via-slate-900 to-indigo-950/50 border border-brand-500/30 rounded-2xl flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-brand-600/20 border border-brand-500/30 text-brand-400 flex items-center justify-center shrink-0">
+        <div className="p-6 bg-[#F0F4FE] border border-[#DBE4FD] rounded-2xl flex items-start gap-4 shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-[#315CF5]/10 border border-[#315CF5]/20 text-[#315CF5] flex items-center justify-center shrink-0">
             <Award className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-xs font-mono uppercase text-brand-400 font-semibold flex items-center gap-1.5">
+            <span className="text-xs font-mono uppercase text-[#315CF5] font-bold flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5" /> AI Comparative Synthesis
             </span>
-            <p className="mt-1 text-sm font-semibold text-white leading-relaxed">
+            <p className="mt-1 text-sm font-semibold text-[#172033] leading-relaxed">
               {comparisonData.verdict}
             </p>
           </div>
@@ -155,35 +152,35 @@ export const CompanyComparisonPage = () => {
 
       {/* Comparison Matrix Table */}
       {comparisonData?.comparison && !loading && (
-        <div className="panel-card p-6 border-slate-800 overflow-x-auto">
+        <div className="panel-card p-6 overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 font-mono uppercase text-[11px]">
+              <tr className="border-b border-[#E6EAF0] text-[#68758A] font-mono uppercase text-[11px]">
                 <th className="pb-4 w-48">Metric / Dimension</th>
                 {comparisonData.comparison.map((item) => (
-                  <th key={item.id} className="pb-4 font-bold text-white text-sm">
+                  <th key={item.id} className="pb-4 font-bold text-[#172033] text-sm">
                     {item.companyName}
-                    <span className="block text-[11px] font-mono text-slate-400 font-normal">
+                    <span className="block text-[11px] font-mono text-[#68758A] font-normal">
                       {item.ticker !== 'N/A' ? item.ticker : 'Private'} • {item.sector}
                     </span>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-mono">
+            <tbody className="divide-y divide-[#F1F4F9] font-mono">
               {/* Safety Score */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Investment Safety Score</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Investment Safety Score</td>
                 {comparisonData.comparison.map((item) => (
-                  <td key={item.id} className="py-3.5 text-base font-bold text-white">
+                  <td key={item.id} className="py-3.5 text-base font-bold text-[#172033]">
                     {item.overallSafetyScore}/100
                   </td>
                 ))}
               </tr>
 
               {/* Risk Level */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Risk Classification</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Risk Classification</td>
                 {comparisonData.comparison.map((item) => (
                   <td key={item.id} className="py-3.5">
                     <RiskBadge level={item.overallRiskLevel} size="sm" />
@@ -192,23 +189,23 @@ export const CompanyComparisonPage = () => {
               </tr>
 
               {/* Physical Legitimacy */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Physical Legitimacy Score</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Physical Legitimacy Score</td>
                 {comparisonData.comparison.map((item) => (
-                  <td key={item.id} className="py-3.5 text-slate-200">
+                  <td key={item.id} className="py-3.5 text-[#172033]">
                     {item.legitimacyScore}/100
                   </td>
                 ))}
               </tr>
 
               {/* Office Type */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Location Classification</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Location Classification</td>
                 {comparisonData.comparison.map((item) => (
-                  <td key={item.id} className="py-3.5 text-slate-300 font-sans">
+                  <td key={item.id} className="py-3.5 text-[#172033] font-sans">
                     {item.locationType}
                     {item.isVirtualOffice && (
-                      <span className="block text-[10px] text-rose-400 font-mono">
+                      <span className="block text-[10px] text-[#E05252] font-mono font-semibold">
                         ⚠️ Virtual Office ({item.virtualOfficeProvider})
                       </span>
                     )}
@@ -217,60 +214,60 @@ export const CompanyComparisonPage = () => {
               </tr>
 
               {/* Solvency Status */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Solvency Rating</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Solvency Rating</td>
                 {comparisonData.comparison.map((item) => (
-                  <td key={item.id} className="py-3.5 font-bold text-emerald-400">
+                  <td key={item.id} className="py-3.5 font-bold text-[#159B70]">
                     {item.solvencyRating}
                   </td>
                 ))}
               </tr>
 
               {/* Revenue */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Annual Revenue</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Annual Revenue</td>
                 {comparisonData.comparison.map((item) => (
-                  <td key={item.id} className="py-3.5 text-slate-200">
+                  <td key={item.id} className="py-3.5 text-[#172033]">
                     {formatCurrency(item.revenue)}
                   </td>
                 ))}
               </tr>
 
               {/* Net Profit Margin */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Net Profit Margin</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Net Profit Margin</td>
                 {comparisonData.comparison.map((item) => (
-                  <td key={item.id} className="py-3.5 text-slate-200">
+                  <td key={item.id} className="py-3.5 text-[#172033]">
                     {formatPercent(item.profitMargin)}
                   </td>
                 ))}
               </tr>
 
               {/* Debt to Equity */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Debt-to-Equity</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Debt-to-Equity</td>
                 {comparisonData.comparison.map((item) => (
-                  <td key={item.id} className="py-3.5 text-slate-200">
+                  <td key={item.id} className="py-3.5 text-[#172033]">
                     {item.debtToEquity}
                   </td>
                 ))}
               </tr>
 
               {/* Current Ratio */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Current Ratio</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Current Ratio</td>
                 {comparisonData.comparison.map((item) => (
-                  <td key={item.id} className="py-3.5 text-slate-200">
+                  <td key={item.id} className="py-3.5 text-[#172033]">
                     {item.currentRatio}
                   </td>
                 ))}
               </tr>
 
               {/* Red Flags Count */}
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Identified Red Flags</td>
+              <tr className="hover:bg-[#F7F9FC]">
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Identified Red Flags</td>
                 {comparisonData.comparison.map((item) => (
-                  <td key={item.id} className="py-3.5 font-bold text-rose-400">
+                  <td key={item.id} className="py-3.5 font-bold text-[#E05252]">
                     {item.redFlagsCount} flags
                   </td>
                 ))}
@@ -278,12 +275,12 @@ export const CompanyComparisonPage = () => {
 
               {/* View Full Link */}
               <tr>
-                <td className="py-3.5 font-sans font-semibold text-slate-300">Dossier Link</td>
+                <td className="py-3.5 font-sans font-bold text-[#68758A]">Dossier Link</td>
                 {comparisonData.comparison.map((item) => (
                   <td key={item.id} className="py-3.5">
                     <Link
                       to={`/research/${item.id}`}
-                      className="text-brand-400 hover:text-brand-300 underline font-sans font-semibold"
+                      className="text-[#315CF5] hover:underline font-sans font-semibold"
                     >
                       View Report
                     </Link>
@@ -297,4 +294,3 @@ export const CompanyComparisonPage = () => {
     </div>
   );
 };
-

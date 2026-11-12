@@ -39,8 +39,8 @@ export const RiskAssessmentPage = () => {
   if (loading) {
     return (
       <div className="py-24 text-center">
-        <Loader2 className="w-8 h-8 animate-spin text-brand-500 mx-auto" />
-        <p className="text-xs text-slate-400 font-mono mt-3">Synthesizing risk assessment matrices...</p>
+        <Loader2 className="w-8 h-8 animate-spin text-[#315CF5] mx-auto" />
+        <p className="text-xs text-[#68758A] font-mono mt-3">Synthesizing risk assessment matrices...</p>
       </div>
     );
   }
@@ -48,12 +48,12 @@ export const RiskAssessmentPage = () => {
   if (!report) {
     return (
       <div className="panel-card p-8 text-center max-w-md mx-auto space-y-4">
-        <AlertTriangle className="w-10 h-10 text-amber-400 mx-auto" />
-        <h3 className="text-base font-bold text-white">No Active Research Selected</h3>
-        <p className="text-xs text-slate-400">
+        <AlertTriangle className="w-10 h-10 text-[#E9A23B] mx-auto" />
+        <h3 className="text-base font-bold text-[#172033]">No Active Research Selected</h3>
+        <p className="text-xs text-[#68758A]">
           Select a research report from your dashboard to view its risk breakdown.
         </p>
-        <Link to="/dashboard" className="inline-block bg-brand-600 text-white text-xs px-4 py-2 rounded-lg">
+        <Link to="/dashboard" className="btn-primary text-xs">
           Back to Dashboard
         </Link>
       </div>
@@ -65,23 +65,23 @@ export const RiskAssessmentPage = () => {
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[#E6EAF0] gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl font-bold text-[#172033] tracking-tight">
               Multi-Dimensional Risk Matrix & Red Flags
             </h1>
             <RiskBadge level={report.overallRiskLevel} />
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#68758A] mt-1">
             Forensic risk quantification across financial, governance, operational, regulatory, and legitimacy dimensions for{' '}
-            <span className="text-white font-semibold">{report.companyName}</span>.
+            <span className="text-[#172033] font-semibold">{report.companyName}</span>.
           </p>
         </div>
 
         <div className="text-right">
-          <span className="text-xs font-mono uppercase text-slate-400">Composite Safety Score</span>
-          <div className="text-2xl font-extrabold text-white font-mono">{report.overallSafetyScore}/100</div>
+          <span className="text-[11px] font-mono uppercase font-bold text-[#68758A]">Composite Safety Score</span>
+          <div className="text-2xl font-extrabold text-[#172033] font-mono">{report.overallSafetyScore}/100</div>
         </div>
       </div>
 
@@ -97,23 +97,23 @@ export const RiskAssessmentPage = () => {
           const vector = rb[item.key] || { score: 20, level: 'LOW', analysis: 'Standard commercial standing.' };
           const Icon = item.icon;
           return (
-            <div key={item.key} className="panel-card p-5 border-slate-800 flex flex-col justify-between">
+            <div key={item.key} className="panel-card p-5 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between">
-                  <Icon className="w-4 h-4 text-slate-400" />
+                  <Icon className="w-4 h-4 text-[#68758A]" />
                   <RiskBadge level={vector.level} size="sm" />
                 </div>
-                <h3 className="font-bold text-sm text-white mt-3">{item.title}</h3>
-                <div className="text-2xl font-extrabold text-white font-mono mt-1">
-                  {vector.score}<span className="text-slate-500 text-xs">/100</span>
+                <h3 className="font-bold text-sm text-[#172033] mt-3">{item.title}</h3>
+                <div className="text-2xl font-extrabold text-[#172033] font-mono mt-1">
+                  {vector.score}<span className="text-[#68758A] text-xs font-normal">/100</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-2 leading-relaxed">{vector.analysis}</p>
+                <p className="text-xs text-[#68758A] mt-2 leading-relaxed">{vector.analysis}</p>
               </div>
 
               {vector.flags?.length > 0 && (
-                <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-1">
+                <div className="mt-4 pt-3 border-t border-[#E6EAF0] space-y-1">
                   {vector.flags.map((f, i) => (
-                    <span key={i} className="text-[10px] font-mono block text-slate-400 truncate">
+                    <span key={i} className="text-[10px] font-mono block text-[#68758A] truncate">
                       • {f}
                     </span>
                   ))}
@@ -125,8 +125,8 @@ export const RiskAssessmentPage = () => {
       </div>
 
       {/* Red Flags Detail Section */}
-      <div className="panel-card p-6 border-slate-800">
-        <h3 className="text-sm font-semibold text-rose-400 uppercase tracking-wider font-mono mb-4 flex items-center gap-2">
+      <div className="panel-card p-6">
+        <h3 className="text-xs font-bold text-[#E05252] uppercase tracking-wider font-mono mb-4 flex items-center gap-2">
           <FileWarning className="w-4 h-4" />
           <span>Detailed Red Flags & Audit Discrepancies ({report.redFlags?.length || 0})</span>
         </h3>
@@ -136,25 +136,25 @@ export const RiskAssessmentPage = () => {
             report.redFlags.map((flag, idx) => (
               <div
                 key={idx}
-                className="p-4 bg-rose-950/20 border border-rose-500/20 rounded-xl text-xs space-y-1.5"
+                className="p-4 bg-[#E05252]/5 border border-[#E05252]/20 rounded-xl text-xs space-y-1.5"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-sm text-rose-300">{flag.title}</span>
-                    <span className="font-mono text-[10px] bg-slate-900 text-slate-400 px-2 py-0.5 rounded border border-slate-800">
+                    <span className="font-bold text-sm text-[#E05252]">{flag.title}</span>
+                    <span className="font-mono text-[10px] bg-white text-[#68758A] px-2 py-0.5 rounded border border-[#E6EAF0] font-semibold">
                       {flag.category}
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono uppercase bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded font-bold">
+                  <span className="text-[10px] font-mono uppercase bg-[#E05252]/15 text-[#E05252] px-2 py-0.5 rounded font-bold">
                     {flag.severity} SEVERITY
                   </span>
                 </div>
-                <p className="text-slate-300 leading-relaxed text-xs">{flag.description}</p>
-                <span className="text-[11px] font-mono text-slate-500 block">Identified Via: {flag.source}</span>
+                <p className="text-[#172033] leading-relaxed text-xs">{flag.description}</p>
+                <span className="text-[11px] font-mono text-[#68758A] block">Identified Via: {flag.source}</span>
               </div>
             ))
           ) : (
-            <div className="py-6 text-center text-xs text-slate-500">
+            <div className="py-6 text-center text-xs text-[#68758A]">
               No material red flags identified in this company's filings.
             </div>
           )}
@@ -162,8 +162,8 @@ export const RiskAssessmentPage = () => {
       </div>
 
       {/* Positive Defensive Indicators */}
-      <div className="panel-card p-6 border-slate-800">
-        <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wider font-mono mb-4 flex items-center gap-2">
+      <div className="panel-card p-6">
+        <h3 className="text-xs font-bold text-[#159B70] uppercase tracking-wider font-mono mb-4 flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4" />
           <span>Positive Defensive Factors ({report.positiveIndicators?.length || 0})</span>
         </h3>
@@ -172,15 +172,15 @@ export const RiskAssessmentPage = () => {
           {report.positiveIndicators?.map((item, idx) => (
             <div
               key={idx}
-              className="p-4 bg-emerald-950/20 border border-emerald-500/20 rounded-xl text-xs space-y-1"
+              className="p-4 bg-[#159B70]/5 border border-[#159B70]/20 rounded-xl text-xs space-y-1"
             >
               <div className="flex items-center justify-between">
-                <span className="font-bold text-emerald-300">{item.title}</span>
-                <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded">
+                <span className="font-bold text-[#159B70]">{item.title}</span>
+                <span className="text-[10px] font-mono bg-[#159B70]/15 text-[#159B70] px-1.5 py-0.5 rounded font-bold">
                   {item.impact} IMPACT
                 </span>
               </div>
-              <p className="text-slate-300 leading-relaxed">{item.description}</p>
+              <p className="text-[#172033] leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>
@@ -188,4 +188,3 @@ export const RiskAssessmentPage = () => {
     </div>
   );
 };
-

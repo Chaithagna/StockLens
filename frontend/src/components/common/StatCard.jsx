@@ -2,27 +2,28 @@ import React from 'react';
 
 export const StatCard = ({ title, value, subtitle, icon: Icon, color = 'brand', change = null }) => {
   const colorMap = {
-    brand: 'text-brand-400 bg-brand-500/10 border-brand-500/20',
-    emerald: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-    amber: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
-    rose: 'text-rose-400 bg-rose-500/10 border-rose-500/20',
-    slate: 'text-slate-400 bg-slate-800/50 border-slate-700/50',
+    brand: 'text-[#315CF5] bg-[#315CF5]/10 border-[#315CF5]/20',
+    emerald: 'text-[#159B70] bg-[#159B70]/10 border-[#159B70]/20',
+    amber: 'text-[#E9A23B] bg-[#E9A23B]/10 border-[#E9A23B]/20',
+    rose: 'text-[#E05252] bg-[#E05252]/10 border-[#E05252]/20',
+    teal: 'text-[#16A6A0] bg-[#16A6A0]/10 border-[#16A6A0]/20',
+    slate: 'text-[#68758A] bg-[#F1F4F9] border-[#E6EAF0]',
   };
 
   return (
     <div className="panel-card p-5 relative overflow-hidden group">
       <div className="flex items-center justify-between">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 font-mono">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[#68758A] font-mono">
             {title}
           </span>
-          <div className="text-2xl font-extrabold text-white mt-1.5 font-mono tracking-tight">
+          <div className="text-2xl font-extrabold text-[#172033] mt-1.5 font-mono tracking-tight">
             {value}
           </div>
           {subtitle && (
-            <p className="text-xs text-slate-400 mt-1 flex items-center gap-1.5">
+            <p className="text-xs text-[#68758A] mt-1 flex items-center gap-1.5">
               {change && (
-                <span className={`font-mono font-medium ${change > 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+                <span className={`font-mono font-medium ${change > 0 ? 'text-[#159B70]' : 'text-[#E05252]'}`}>
                   {change > 0 ? `+${change}%` : `${change}%`}
                 </span>
               )}
@@ -32,14 +33,13 @@ export const StatCard = ({ title, value, subtitle, icon: Icon, color = 'brand', 
         </div>
 
         {Icon && (
-          <div className={`w-12 h-12 rounded-xl flex items-center justify-center border shrink-0 ${colorMap[color] || colorMap.brand}`}>
-            <Icon className="w-6 h-6" />
+          <div className={`w-11 h-11 rounded-xl flex items-center justify-center border shrink-0 ${colorMap[color] || colorMap.brand}`}>
+            <Icon className="w-5 h-5" />
           </div>
         )}
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-slate-700/30 to-transparent group-hover:via-brand-500/50 transition-all" />
+      <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-transparent to-transparent group-hover:via-[#315CF5]/40 transition-all" />
     </div>
   );
 };
-

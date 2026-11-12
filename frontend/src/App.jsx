@@ -26,7 +26,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-400 font-mono text-xs">
+      <div className="min-h-screen bg-[#F7F9FC] flex items-center justify-center text-[#68758A] font-mono text-xs">
         Authenticating terminal session...
       </div>
     );

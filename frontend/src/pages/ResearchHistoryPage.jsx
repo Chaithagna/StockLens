@@ -12,8 +12,6 @@ import {
   GitCompare,
   AlertCircle,
   Loader2,
-  Bot,
-  Calendar,
 } from 'lucide-react';
 
 export const ResearchHistoryPage = () => {
@@ -85,13 +83,13 @@ export const ResearchHistoryPage = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[#E6EAF0] gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-            <History className="w-6 h-6 text-brand-400" />
+          <h1 className="text-2xl font-bold text-[#172033] tracking-tight flex items-center gap-2">
+            <History className="w-6 h-6 text-[#315CF5]" />
             <span>Research Archive & History</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#68758A] mt-1">
             Access previous diligence dossiers, compare historical snapshot updates, or select reports for side-by-side analysis.
           </p>
         </div>
@@ -99,7 +97,7 @@ export const ResearchHistoryPage = () => {
         {selectedForCompare.length >= 2 && (
           <button
             onClick={handleLaunchCompare}
-            className="bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-lg shadow-brand-500/20 transition-all flex items-center gap-2 self-start sm:self-auto"
+            className="btn-primary self-start sm:self-auto"
           >
             <GitCompare className="w-4 h-4" />
             <span>Compare Selected ({selectedForCompare.length})</span>
@@ -108,9 +106,9 @@ export const ResearchHistoryPage = () => {
       </div>
 
       {/* Filter Toolbar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800/80">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-[#E6EAF0] shadow-xs">
         <div className="relative w-full sm:w-80">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#9AA5B6]" />
           <input
             type="text"
             value={search}
@@ -121,7 +119,7 @@ export const ResearchHistoryPage = () => {
         </div>
 
         <div className="flex items-center gap-2 w-full sm:w-auto">
-          <Filter className="w-3.5 h-3.5 text-slate-400" />
+          <Filter className="w-3.5 h-3.5 text-[#68758A]" />
           <select
             value={riskFilter}
             onChange={(e) => setRiskFilter(e.target.value)}
@@ -137,17 +135,17 @@ export const ResearchHistoryPage = () => {
       </div>
 
       {/* Reports Table */}
-      <div className="panel-card p-6 border-slate-800">
+      <div className="panel-card p-6">
         {loading ? (
           <div className="py-20 text-center space-y-3">
-            <Loader2 className="w-6 h-6 animate-spin text-brand-500 mx-auto" />
-            <p className="text-xs text-slate-400 font-mono">Retrieving your private research history...</p>
+            <Loader2 className="w-6 h-6 animate-spin text-[#315CF5] mx-auto" />
+            <p className="text-xs text-[#68758A] font-mono">Retrieving your private research history...</p>
           </div>
         ) : reports.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-800 text-slate-400 font-mono uppercase text-[11px]">
+                <tr className="border-b border-[#E6EAF0] text-[#68758A] font-mono uppercase text-[11px]">
                   <th className="pb-3 w-8">Select</th>
                   <th className="pb-3">Company</th>
                   <th className="pb-3">Safety Score</th>
@@ -158,62 +156,64 @@ export const ResearchHistoryPage = () => {
                   <th className="pb-3 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-[#F1F4F9]">
                 {reports.map((r) => {
                   const isSelected = selectedForCompare.includes(r._id);
                   return (
                     <tr
                       key={r._id}
-                      className={`hover:bg-slate-800/40 transition-colors ${isSelected ? 'bg-brand-950/20' : ''}`}
+                      className={`hover:bg-[#F7F9FC] transition-colors ${isSelected ? 'bg-[#F0F4FE]' : ''}`}
                     >
                       <td className="py-3.5">
                         <input
                           type="checkbox"
                           checked={isSelected}
                           onChange={(e) => toggleCompareSelect(r._id, e)}
-                          className="rounded border-slate-700 text-brand-600 focus:ring-0 cursor-pointer"
+                          className="rounded border-[#E6EAF0] text-[#315CF5] focus:ring-0 cursor-pointer"
                         />
                       </td>
-                      <td className="py-3.5 font-semibold text-white">
+                      <td className="py-3.5 font-semibold text-[#172033]">
                         <div className="flex items-center gap-2">
-                          <Link to={`/research/${r._id}`} className="hover:text-brand-300">
+                          <Link to={`/research/${r._id}`} className="hover:text-[#315CF5] hover:underline font-bold">
                             {r.companyName}
                           </Link>
                           {r.ticker && (
-                            <span className="font-mono text-[10px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">
+                            <span className="font-mono text-[10px] bg-[#F1F4F9] text-[#68758A] px-1.5 py-0.5 rounded border border-[#E6EAF0]">
                               {r.ticker}
                             </span>
                           )}
                         </div>
                       </td>
-                      <td className="py-3.5 font-mono font-bold text-white">
+                      <td className="py-3.5 font-mono font-bold text-[#172033]">
                         {r.overallSafetyScore}/100
                       </td>
-                      <td className="py-3.5 font-mono text-slate-300">
+                      <td className="py-3.5 font-mono text-[#68758A]">
                         {r.legitimacyScore}/100
                       </td>
                       <td className="py-3.5">
                         <RiskBadge level={r.overallRiskLevel} size="sm" />
                       </td>
-                      <td className="py-3.5 font-mono text-[11px] text-slate-400">
+                      <td className="py-3.5 font-mono text-[11px] text-[#68758A]">
                         {r.status}
                       </td>
-                      <td className="py-3.5 font-mono text-slate-400">
+                      <td className="py-3.5 font-mono text-[#68758A]">
                         {formatDate(r.createdAt)}
                       </td>
-                      <td className="py-3.5 text-right space-x-2">
+                      <td className="py-3.5 text-right space-x-1.5">
                         <Link
                           to={`/research/${r._id}`}
-                          className="inline-flex items-center gap-1 text-slate-300 hover:text-white px-2 py-1 rounded hover:bg-slate-800 transition-colors"
+                          className="inline-flex items-center gap-1 text-[#68758A] hover:text-[#172033] p-1.5 rounded-lg hover:bg-[#F1F4F9] transition-colors"
+                          title="View Report"
                         >
-                          <ExternalLink className="w-3.5 h-3.5" />
+                          <ExternalLink className="w-4 h-4" />
                         </Link>
                         <button
                           onClick={(e) => handleDelete(r._id, e)}
                           disabled={deletingId === r._id}
-                          className="inline-flex items-center gap-1 text-rose-400 hover:text-rose-300 px-2 py-1 rounded hover:bg-rose-500/10 transition-colors"
+                          className="inline-flex items-center gap-1 text-[#E05252] hover:text-[#C53030] p-1.5 rounded-lg hover:bg-[#E05252]/10 transition-colors"
+                          title="Delete Report"
                         >
-                          {deletingId === r._id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
+                          {deletingId === r._id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
                         </button>
                       </td>
                     </tr>
@@ -224,14 +224,14 @@ export const ResearchHistoryPage = () => {
           </div>
         ) : (
           <div className="py-16 text-center space-y-3">
-            <AlertCircle className="w-8 h-8 text-slate-500 mx-auto" />
-            <p className="text-sm font-semibold text-white">No research reports found</p>
-            <p className="text-xs text-slate-400">
+            <AlertCircle className="w-8 h-8 text-[#9AA5B6] mx-auto" />
+            <p className="text-sm font-bold text-[#172033]">No research reports found</p>
+            <p className="text-xs text-[#68758A]">
               Try adjusting your search criteria, or launch a new company audit.
             </p>
             <Link
               to="/search"
-              className="inline-block mt-2 bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm"
+              className="btn-primary mt-2"
             >
               Start New Research
             </Link>
@@ -241,4 +241,3 @@ export const ResearchHistoryPage = () => {
     </div>
   );
 };
-

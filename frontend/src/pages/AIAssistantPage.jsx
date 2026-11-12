@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { assistantService } from '../services/assistantService.js';
 import { researchService } from '../services/researchService.js';
 import { useResearch } from '../context/ResearchContext.jsx';
@@ -7,12 +7,7 @@ import {
   Bot,
   User,
   Send,
-  Sparkles,
-  ShieldCheck,
-  AlertTriangle,
   Loader2,
-  HelpCircle,
-  FileText,
 } from 'lucide-react';
 
 export const AIAssistantPage = () => {
@@ -122,24 +117,24 @@ export const AIAssistantPage = () => {
   return (
     <div className="space-y-6 max-w-5xl mx-auto h-[calc(100vh-140px)] flex flex-col">
       {/* Header & Report Selector */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-3 shrink-0">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E6EAF0] gap-3 shrink-0">
         <div>
           <div className="flex items-center gap-2">
-            <Bot className="w-6 h-6 text-brand-400" />
-            <h1 className="text-xl font-bold text-white tracking-tight">AI Due Diligence Assistant</h1>
+            <Bot className="w-6 h-6 text-[#315CF5]" />
+            <h1 className="text-xl font-bold text-[#172033] tracking-tight">AI Due Diligence Assistant</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-[#68758A] mt-0.5">
             Interactive inquiry engine grounded strictly in verified corporate records.
           </p>
         </div>
 
         {/* Company Dropdown */}
         <div className="flex items-center gap-2">
-          <span className="text-xs text-slate-400 font-mono">Dossier:</span>
+          <span className="text-xs text-[#68758A] font-mono font-semibold">Dossier:</span>
           <select
             value={activeReportId}
             onChange={(e) => setActiveReportId(e.target.value)}
-            className="glass-input text-xs py-1.5 font-semibold text-brand-300"
+            className="glass-input text-xs py-1.5 font-bold text-[#315CF5]"
           >
             {availableReports.map((r) => (
               <option key={r._id} value={r._id}>
@@ -151,11 +146,11 @@ export const AIAssistantPage = () => {
       </div>
 
       {/* Main Chat Box */}
-      <div className="panel-card p-4 sm:p-6 border-slate-800 flex-1 flex flex-col overflow-hidden relative">
+      <div className="panel-card p-4 sm:p-6 flex-1 flex flex-col overflow-hidden relative">
         {loadingChat ? (
           <div className="flex-1 flex flex-col items-center justify-center space-y-3">
-            <Loader2 className="w-6 h-6 animate-spin text-brand-500" />
-            <p className="text-xs text-slate-400 font-mono">Loading dossier context...</p>
+            <Loader2 className="w-6 h-6 animate-spin text-[#315CF5]" />
+            <p className="text-xs text-[#68758A] font-mono">Loading dossier context...</p>
           </div>
         ) : (
           <div className="flex-1 overflow-y-auto space-y-4 pr-2">
@@ -169,32 +164,32 @@ export const AIAssistantPage = () => {
                   <div
                     className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-mono font-bold ${
                       isUser
-                        ? 'bg-brand-600 text-white'
-                        : 'bg-slate-800 border border-slate-700 text-brand-400'
+                        ? 'bg-[#315CF5] text-white shadow-xs'
+                        : 'bg-[#F0F4FE] border border-[#DBE4FD] text-[#315CF5]'
                     }`}
                   >
                     {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                   </div>
 
                   <div
-                    className={`max-w-[85%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed space-y-2 ${
+                    className={`max-w-[85%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed space-y-2 shadow-xs ${
                       isUser
-                        ? 'bg-brand-600 text-white rounded-tr-none'
-                        : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-none whitespace-pre-line'
+                        ? 'bg-[#315CF5] text-white rounded-tr-none'
+                        : 'bg-[#F7F9FC] border border-[#E6EAF0] text-[#172033] rounded-tl-none whitespace-pre-line font-normal'
                     }`}
                   >
                     <div>{msg.content}</div>
 
                     {/* Cited sources */}
                     {msg.citedSources?.length > 0 && (
-                      <div className="mt-3 pt-2.5 border-t border-slate-800 text-[11px] font-mono text-slate-400 space-y-1">
-                        <span className="font-bold text-brand-400 uppercase tracking-wider block text-[10px]">
+                      <div className="mt-3 pt-2.5 border-t border-[#E6EAF0] text-[11px] font-mono text-[#68758A] space-y-1">
+                        <span className="font-bold text-[#315CF5] uppercase tracking-wider block text-[10px]">
                           Cited Sources & Evidence:
                         </span>
                         {msg.citedSources.map((cs, i) => (
-                          <div key={i} className="bg-slate-950/50 p-1.5 rounded border border-slate-800/80">
-                            <span className="font-semibold text-slate-300">• {cs.title}</span> ({cs.type}):{' '}
-                            <span className="italic">{cs.excerpt}</span>
+                          <div key={i} className="bg-white p-2 rounded-lg border border-[#E6EAF0] text-[#172033]">
+                            <span className="font-bold text-[#172033]">• {cs.title}</span> ({cs.type}):{' '}
+                            <span className="italic text-[#68758A]">{cs.excerpt}</span>
                           </div>
                         ))}
                       </div>
@@ -206,11 +201,11 @@ export const AIAssistantPage = () => {
 
             {sending && (
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-xl bg-slate-800 border border-slate-700 text-brand-400 flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-xl bg-[#F0F4FE] border border-[#DBE4FD] text-[#315CF5] flex items-center justify-center shrink-0">
                   <Bot className="w-4 h-4" />
                 </div>
-                <div className="p-3 bg-slate-900 border border-slate-800 rounded-2xl rounded-tl-none text-xs text-slate-400 flex items-center gap-2">
-                  <Loader2 className="w-3.5 h-3.5 animate-spin text-brand-500" />
+                <div className="p-3 bg-[#F7F9FC] border border-[#E6EAF0] rounded-2xl rounded-tl-none text-xs text-[#68758A] flex items-center gap-2">
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-[#315CF5]" />
                   <span>Cross-referencing evidence and synthesizing response...</span>
                 </div>
               </div>
@@ -221,16 +216,16 @@ export const AIAssistantPage = () => {
         )}
 
         {/* Suggested Quick Prompts */}
-        <div className="pt-3 pb-2 border-t border-slate-800/80 shrink-0">
+        <div className="pt-3 pb-2 border-t border-[#E6EAF0] shrink-0">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-            <span className="text-[10px] font-mono uppercase text-slate-500 shrink-0">Suggestions:</span>
+            <span className="text-[10px] font-mono uppercase font-bold text-[#68758A] shrink-0">Suggestions:</span>
             {SUGGESTED_PROMPTS.map((p, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => handleSend(p)}
                 disabled={sending}
-                className="text-[11px] bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-full whitespace-nowrap transition-colors disabled:opacity-50"
+                className="text-[11px] font-medium bg-[#F7F9FC] hover:bg-[#EEF2F6] text-[#172033] border border-[#E6EAF0] px-3 py-1.5 rounded-full whitespace-nowrap transition-colors disabled:opacity-50"
               >
                 {p}
               </button>
@@ -244,7 +239,7 @@ export const AIAssistantPage = () => {
             e.preventDefault();
             handleSend();
           }}
-          className="flex items-center gap-2 pt-2 border-t border-slate-800/80 shrink-0"
+          className="flex items-center gap-2 pt-2 border-t border-[#E6EAF0] shrink-0"
         >
           <input
             type="text"
@@ -257,7 +252,7 @@ export const AIAssistantPage = () => {
           <button
             type="submit"
             disabled={sending || !inputQuery.trim() || loadingChat}
-            className="bg-brand-600 hover:bg-brand-500 text-white p-2.5 rounded-xl shadow-md transition-all disabled:opacity-50 shrink-0"
+            className="btn-primary !p-2.5 !rounded-xl shrink-0"
           >
             <Send className="w-4 h-4" />
           </button>
@@ -266,4 +261,3 @@ export const AIAssistantPage = () => {
     </div>
   );
 };
-
